@@ -92,7 +92,7 @@ function makeUrl(trackNum) {
   return url;
 }
 
-router.get("/home", function (req, res) {
+router.get("/shipmaster", isAuthenticated, function (req, res) {
   db.Package.findAll({
     where: {
       User: req.user.id,
