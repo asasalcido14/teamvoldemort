@@ -117,7 +117,6 @@ router.post("/signup", function(req, res) {
     db.User.create({
         f_name: req.body.f_name,
         l_name: req.body.l_name,
-        user_name: req.body.user_name,
         email: req.body.email,
         phone: req.body.phone,
         pwd: req.body.pwd
