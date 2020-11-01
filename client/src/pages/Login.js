@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
-import {Button,Form,Alert,Container} from "react-bootstrap";
+import {Button,Form,Alert,Container,Row,Col} from "react-bootstrap";
+import "./Login.css";
 
 
 class Login extends React.Component {
@@ -24,7 +25,7 @@ class Login extends React.Component {
         if (typeof data === "string"){
             this.setState({
                 error: data,
-
+    
             })      
         }
     });
@@ -33,7 +34,17 @@ class Login extends React.Component {
     return (
 
       <Container>
+        
+        <header> Tracking App </header>
+      <Row>
+        <Col xs={{span:8, offset:2}}> 
+        <div id= "intro"></div>
+        </Col>
+      </Row>
+<br></br>
 
+<Row>
+  <Col xs={{span:8, offset:2}}>
         <Form onSubmit = {this.handleSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -57,6 +68,13 @@ class Login extends React.Component {
      {this.state.error}
   </Alert>}
         </Form>
+        </Col>
+ </Row>
+
+
+
+
+
       </Container>
     );
   }
