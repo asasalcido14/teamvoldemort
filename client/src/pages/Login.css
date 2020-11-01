@@ -1,5 +1,8 @@
+header{
+    color: violet;
+};
 #intro{
     background-image: url(../assets/planegif.gif);
     height: 400px;
     background-repeat: no-repeat;
-}
+};

@@ -36,6 +36,8 @@ class Login extends React.Component {
       <Container>
         
         <header> Tracking App </header>
+
+
       <Row>
         <Col xs={{span:8, offset:2}}> 
         <div id= "intro"></div>
