@@ -34,10 +34,12 @@ class Login extends React.Component {
     return (
 
       <Container>
-        
+        <Row>
+          <Col xs={{span:8, offset:5}}>
         <header> Tracking App </header>
-
-
+        </Col>
+        </Row>
+<br></br>
       <Row>
         <Col xs={{span:8, offset:2}}> 
         <div id= "intro"></div>
