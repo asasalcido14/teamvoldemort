@@ -1,7 +1,7 @@
 const db = require("../models");
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const { isAbsolute } = require("path");
 
@@ -76,13 +76,17 @@ function makeUrl(trackNum) {
   let url;
   switch (carrier) {
     case "UPS":
-      url = "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" + trackNum;
+      url =
+        "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" +
+        trackNum;
       break;
     case "USPS":
-        url = "https://tools.usps.com/go/TrackConfirmAction.action?tLabels=" + trackNum
+      url =
+        "https://tools.usps.com/go/TrackConfirmAction.action?tLabels=" +
+        trackNum;
       break;
     case "FedEx":
-        url = "https://www.fedex.com/fedextrack/?tracknumbers=" + trackNum
+      url = "https://www.fedex.com/fedextrack/?tracknumbers=" + trackNum;
       break;
 
     default:
@@ -113,34 +117,53 @@ router.post("/add", function (req, res) {
   });
 });
 
-router.post("/signup", function(req, res) {
-    db.User.create({
-        f_name: req.body.f_name,
-        l_name: req.body.l_name,
-        email: req.body.email,
-        phone: req.body.phone,
-        pwd: req.body.pwd
-    })
-})
-
 router.get("/api/login", function (req, res) {
-    db.User.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(function(data) {
-        if (data === null) {
-            return res.json ("Hey, idiot, put in the right email. What are you, stupid? I swear bro...")
-        }
-        bcrypt.compare(req.body.password, data.pwd, function(err, result) {
-            if (err) throw err;
-            if (result === false) {
-                return res.json("Hey, idiot, put in the right password. What are you, stupid? I swear bro...")
-            }
-            // result == true
-        });
-        res.json(data)
-    })
-})
+  db.User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then(function (data) {
+    if (data === null) {
+      return res.json(
+        "Hey, idiot, put in the right email. What are you, stupid? I swear bro..."
+      );
+    }
+    bcrypt.compare(req.body.password, data.pwd, function (err, result) {
+      if (err) throw err;
+      if (result === false) {
+        return res.json(
+          "Hey, idiot, put in the right password. What are you, stupid? I swear bro..."
+        );
+      }
+      // result == true
+    });
+    res.json(data);
+  });
+});
+
+router.post("/api/signup", function (req, res) {
+  db.User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then(function (data) {
+    if (data !== null) {
+      return res.json(
+        "Hey, idiot, you already have an account. What are you, stupid? I swear bro..."
+      );
+    }
+    const hashWord = bcrypt.hash(req.body.pwd, 10, function(err, hash) {
+      if (err) throw err;
+      return hash
+    })    
+    db.User.create({
+      f_name: req.body.f_name,
+      l_name: req.body.l_name,
+      email: req.body.email,
+      phone: req.body.phone,
+      pwd: hashWord
+    });
+  });
+});
 
 module.exports = router;
