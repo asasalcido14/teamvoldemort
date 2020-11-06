@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route,} from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar.js"
-// import ShipMaster from "./pages/ShipMaster";
+import ShipMaster from "./pages/ShipMaster";
 
 import {useHistory} from "react-router-dom"
 
@@ -21,9 +21,11 @@ function App() {
           <Login setCurrentUser={setCurrentUser}/>
         </Route>
         <Route exact path= "/signup">
-          <Signup />
+          <Signup setCurrentUser={setCurrentUser}/>
         </Route>
-        {/* <Route exact path= "/shipmaster" component={ShipMaster} /> */}
+        <Route exact path= "/shipmaster">
+          <ShipMaster currentUser={currentUser}/>
+        </Route>
       </div>
     </Router>
         

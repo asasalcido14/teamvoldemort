@@ -94,10 +94,10 @@ function makeUrl(trackNum) {
   return url;
 }
 
-router.get("/shipmaster", isAuthenticated, function (req, res) {
+router.get("/api/shipmaster", function (req, res) {
   db.Package.findAll({
     where: {
-      User: req.user.id,
+      User: req.body.id,
     },
   }).then(function (Packages) {
     Packages.map((Package) => {
@@ -113,8 +113,17 @@ router.post("/api/new", function (req, res) {
   db.Package.create({
     url: makeUrl(req.body.trackNum),
     description: req.body.description,
+    User: req.body.user
   });
 });
+
+router.delete("api/delete", function (req, res) {
+  db.Package.destroy({
+    where: {
+      id: req.body.id
+    }
+  })
+})
 
 router.post("/api/login", function (req, res) {
   db.User.findOne({

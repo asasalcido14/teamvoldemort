@@ -37,7 +37,7 @@ class Signup extends React.Component {
             error: data.data,
           });
         } else {
-          this.props.history.push("/shipmaster");
+          this.props.history.push("/");
         }
       });
   };

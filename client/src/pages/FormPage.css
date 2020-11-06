@@ -31,4 +31,14 @@ form {
     margin-top: 50px
 }
 
-
+header{
+    color: violet;
+    border-radius: 10ch;
+    font-size: 30px;
+    border-radius: 20px;
+}
+#intro{
+    background-image: url(../assets/planegif.gif);
+    height: 400px;
+    background-repeat: no-repeat;
+}
