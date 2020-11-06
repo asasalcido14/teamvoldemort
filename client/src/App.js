@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route,} from "react-router-dom";
-import {Navbar} from "bootstrap";
+import {Navbar} from "react-bootstrap";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 // import ShipMaster from "./pages/ShipMaster";
