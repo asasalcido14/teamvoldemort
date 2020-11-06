@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import Alert from "react-bootstrap/Alert";
+import { withRouter } from "react-router-dom";
 import "./FormPage.css";
 
 class Signup extends React.Component {
@@ -35,6 +36,8 @@ class Signup extends React.Component {
           this.setState({
             error: data.data,
           });
+        } else {
+          this.props.history.push("/shipmaster");
         }
       });
   };
@@ -121,4 +124,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

@@ -94,22 +94,22 @@ function makeUrl(trackNum) {
   return url;
 }
 
-// router.get("/shipmaster", isAuthenticated, function (req, res) {
-//   db.Package.findAll({
-//     where: {
-//       User: req.user.id,
-//     },
-//   }).then(function (Packages) {
-//     Packages.map((Package) => {
-//       return {
-//         url: Package.url,
-//         description: Package.description,
-//       };
-//     });
-//   });
-// });
+router.get("/shipmaster", isAuthenticated, function (req, res) {
+  db.Package.findAll({
+    where: {
+      User: req.user.id,
+    },
+  }).then(function (Packages) {
+    Packages.map((Package) => {
+      return {
+        url: Package.url,
+        description: Package.description,
+      };
+    });
+  });
+});
 
-router.post("/add", function (req, res) {
+router.post("/api/new", function (req, res) {
   db.Package.create({
     url: makeUrl(req.body.trackNum),
     description: req.body.description,
@@ -123,19 +123,23 @@ router.post("/api/login", function (req, res) {
     },
   }).then(function (data) {
     if (data === null) {
-      res.json(
+      return res.json(
         "Hey, idiot, put in the right email. What are you, stupid? I swear bro..."
       );
     }
     bcrypt.compare(req.body.pwd, data.pwd, function (err, result) {
       if (err) throw err;
       if (result === false) {
-        res.json(
+        return res.json(
           "Hey, idiot, put in the right password. What are you, stupid? I swear bro..."
         );
       }
       // result == true
-      res.json(true);
+      const currentUser = {
+        id: data.id,
+        name: data.f_name
+      }
+      res.json(currentUser);
 
     });
   });

@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Button, Form, Alert, Container, Row, Col } from "react-bootstrap";
 import "./FormPage.css";
+import { withRouter } from 'react-router-dom'
 
 class Login extends React.Component {
   state = {
@@ -28,8 +29,8 @@ class Login extends React.Component {
             error: data.data,
           });
         } else {
-          //react router code to change route to /shipmaster
-          //save user's email in state
+          this.props.setCurrentUser(data.data)
+          this.props.history.push("/shipmaster");
         }
       });
   };
@@ -91,4 +92,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
