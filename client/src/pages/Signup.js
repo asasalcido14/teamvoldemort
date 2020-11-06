@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 import "./FormPage.css";
 
 class Signup extends React.Component {
@@ -9,24 +10,33 @@ class Signup extends React.Component {
     email: "",
     phone: "",
     pwd: "",
+    error: "",
   };
 
   handleChange = (e) => {
-    console.log(this.state);
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
   handlesubmit = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     console.log(this.state);
-    axios.post("/api/signup", {
-      f_name: this.state.f_name,
-      l_name: this.state.l_name,
-      email: this.state.email,
-      phone: this.state.phone,
-      pwd: this.state.pwd,
-    });
+    axios
+      .post("/api/signup", {
+        f_name: this.state.f_name,
+        l_name: this.state.l_name,
+        email: this.state.email,
+        phone: this.state.phone,
+        pwd: this.state.pwd,
+      })
+      .then((data) => {
+        console.log(data);
+        if (typeof data.data === "string") {
+          this.setState({
+            error: data.data,
+          });
+        }
+      });
   };
 
   render() {
@@ -81,7 +91,7 @@ class Signup extends React.Component {
               placeholder="Enter Phone Number"
               value={this.state.phone}
               onChange={this.handleChange}
-              name={"phone"}
+              name="phone"
             />
           </div>
 
@@ -98,12 +108,13 @@ class Signup extends React.Component {
             />
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-          >
+          <button type="submit" className="btn btn-primary">
             Signup
           </button>
+              <p>Already have an account? <a href="/">Click here</a> to log in!</p>
+          {this.state.error && (
+            <Alert variant="danger">{this.state.error}</Alert>
+          )}
         </form>
       </div>
     );
