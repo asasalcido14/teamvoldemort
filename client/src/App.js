@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route,} from "react-router-dom";
-import Login from "../src/pages/Login";
-import Signup from "../src/pages/Signup";
-import ShipMaster from "../src/pages/ShipMaster";
-import Navbar from "../src/components/Navbar";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ShipMaster from "./pages/ShipMaster.js"
+import Navbar from "./components/Navbar.js";
 
 
 function App() {
