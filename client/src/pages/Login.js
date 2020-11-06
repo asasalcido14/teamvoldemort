@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {Button,Form,Alert,Container,Row,Col} from "react-bootstrap";
-import "./Login.css";
+import "./FormPage.css";
 
 
 class Login extends React.Component {
@@ -63,11 +63,12 @@ class Login extends React.Component {
             <Form.Control value = {this.state.pwd} onChange = {this.handleChange} name = {"pwd"} type="password" placeholder="Password" />
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
+            <Form.Check type="checkbox" label="Check me out"  />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          
           {this.state.error && <Alert variant= "danger">
      {this.state.error}
   </Alert>}
