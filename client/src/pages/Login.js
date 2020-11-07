@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {Button,Form,Alert,Container,Row,Col} from "react-bootstrap";
+import "./Login.css"
 import "./FormPage.css";
 import { withRouter } from 'react-router-dom'
 
@@ -50,38 +51,6 @@ class Login extends React.Component {
         </Col>
       </Row>
 <br></br>
-
-<Row>
-  <Col xs={{span:8, offset:2}}>
-        <Form onSubmit = {this.handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control value = {this.state.email} onChange = {this.handleChange} name = {"email"} type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control value = {this.state.pwd} onChange = {this.handleChange} name = {"pwd"} type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out"  />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-          
-          {this.state.error && <Alert variant= "danger">
-     {this.state.error}
-  </Alert>}
-        </Form>
-        </Col>
- </Row>
-
-
-
 
 
         <Row>
