@@ -5,13 +5,13 @@ import { withRouter } from "react-router-dom";
 import Packages from "../components/Packages";
 import "./FormPage.css";
 
-class ShipMaster extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <Packages />
-        <Footer />
-      </Wrapper>
-    );
-  }
+function ShipMaster() {
+  return (
+    <Wrapper>
+      <Packages />
+      <Footer />
+    </Wrapper>
+  );
 }
+
+export default ShipMaster
