@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import axios from "axios";
+import Axios from "axios";
 
-function Package() {
+function Package(props) {
   const [packages, setPackages] = useState();
 
   useEffect(() => {
-    api.get("/api/shipmaster");
+    Axios.get("/api/shipmaster/" + props.currentUser.id);
   }, [])
 
   function handleChange(e) {

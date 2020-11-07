@@ -1,15 +1,18 @@
-import axios from "axios";
-import React, { Component } from "react";
-import { Button, Form, Alert, Container, Row, Col } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
-import Packages from "../components/Packages";
+// import React, { Wrapper } from "react";
+import Wrapper from "../components/Wrapper"
+import Package from "../components/Package";
+import Footer from "../components/Footer"
+import {Container} from "react-bootstrap"
 import "./FormPage.css";
 
-function ShipMaster() {
+function ShipMaster(props) {
   return (
     <Wrapper>
-      <Packages />
-      <Footer />
+      <Container>
+        <h3>Welcome, {props.currentUser.name}</h3>
+        <Package currentUser={props.currentUser} />
+        <Footer currentUser={props.currentUser}/>
+      </Container>
     </Wrapper>
   );
 }
