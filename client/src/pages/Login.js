@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { Button, Form, Alert, Container, Row, Col } from "react-bootstrap";
-import "./Login.css";
-
+import "./FormPage.css";
+import { withRouter } from 'react-router-dom'
 
 class Login extends React.Component {
   state = {
@@ -18,21 +18,24 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("/api/login", {
-      email: this.state.email,
-      pwd: this.state.pwd,
-    }).then(function (data) {
-      if (typeof data === "string") {
-        this.setState({
-          error: data,
-
-        })
-      }
-    });
+    axios
+      .post("/api/login", {
+        email: this.state.email,
+        pwd: this.state.pwd,
+      })
+      .then((data) => {
+        if (typeof data.data === "string") {
+          this.setState({
+            error: data.data,
+          });
+        } else {
+          this.props.setCurrentUser(data.data)
+          this.props.history.push("/shipmaster");
+        }
+      });
   };
   render() {
     return (
-
       <Container>
         <Row>
           <Col xs={{ span: 8, offset: 5 }}>
@@ -52,45 +55,41 @@ class Login extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control value={this.state.email} onChange={this.handleChange} name={"email"} type="email" placeholder="Enter email" />
+                <Form.Control
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  name={"email"}
+                  type="email"
+                  placeholder="Enter email"
+                />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
-            </Form.Text>
+                </Form.Text>
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control value={this.state.pwd} onChange={this.handleChange} name={"pwd"} type="password" placeholder="Password" />
+                <Form.Control
+                  value={this.state.pwd}
+                  onChange={this.handleChange}
+                  name={"pwd"}
+                  type="password"
+                  placeholder="Password"
+                />
               </Form.Group>
-
               <Button variant="primary" type="submit">
                 Submit
-          </Button>
+              </Button>
+              <p>Don't have an account? <a href="/signup">Click here</a> to sign up!</p>
+              {this.state.error && (
+                <Alert variant="danger">{this.state.error}</Alert>
+              )}
             </Form>
           </Col>
         </Row>
-        
-
-        <Row>
-          <Col xs={{ span: 8, offset: 2 }}>
-            
-          <p>Don't have an account? Sign up<a href="/signup">here!</a></p>
-          </Col>
-
-        </Row>
-
-        
-        {this.state.error && <Alert variant="danger">
-          {this.state.error}
-        </Alert>}
-
-
-
-
-
       </Container>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);

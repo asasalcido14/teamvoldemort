@@ -1,10 +1,9 @@
 const db = require("../models");
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const { isAbsolute } = require("path");
-
 const expressions = [
   {
     regex: RegExp(/^(1Z)[0-9A-Z]{16}$/),
@@ -76,13 +75,17 @@ function makeUrl(trackNum) {
   let url;
   switch (carrier) {
     case "UPS":
-      url = "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" + trackNum;
+      url =
+        "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" +
+        trackNum;
       break;
     case "USPS":
-        url = "https://tools.usps.com/go/TrackConfirmAction.action?tLabels=" + trackNum
+      url =
+        "https://tools.usps.com/go/TrackConfirmAction.action?tLabels=" +
+        trackNum;
       break;
     case "FedEx":
-        url = "https://www.fedex.com/fedextrack/?tracknumbers=" + trackNum
+      url = "https://www.fedex.com/fedextrack/?tracknumbers=" + trackNum;
       break;
 
     default:
@@ -91,56 +94,90 @@ function makeUrl(trackNum) {
   return url;
 }
 
-// router.get("/shipmaster", isAuthenticated, function (req, res) {
-//   db.Package.findAll({
-//     where: {
-//       User: req.user.id,
-//     },
-//   }).then(function (Packages) {
-//     Packages.map((Package) => {
-//       return {
-//         url: Package.url,
-//         description: Package.description,
-//       };
-//     });
-//   });
-// });
-
-router.post("/add", function (req, res) {
-  db.Package.create({
-    url: makeUrl(req.body.trackNum),
-    description: req.body.description,
+router.get("/api/shipmaster", function (req, res) {
+  db.Package.findAll({
+    where: {
+      User: req.body.id,
+    },
+  }).then(function (Packages) {
+    Packages.map((Package) => {
+      return {
+        url: Package.url,
+        description: Package.description,
+      };
+    });
   });
 });
 
-router.post("/signup", function(req, res) {
-    db.User.create({
+router.post("/api/new", function (req, res) {
+  db.Package.create({
+    url: makeUrl(req.body.trackNum),
+    description: req.body.description,
+    User: req.body.user
+  });
+});
+
+router.delete("api/delete", function (req, res) {
+  db.Package.destroy({
+    where: {
+      id: req.body.id
+    }
+  })
+})
+
+router.post("/api/login", function (req, res) {
+  db.User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then(function (data) {
+    if (data === null) {
+      return res.json(
+        "Hey, idiot, put in the right email. What are you, stupid? I swear bro..."
+      );
+    }
+    bcrypt.compare(req.body.pwd, data.pwd, function (err, result) {
+      if (err) throw err;
+      if (result === false) {
+        return res.json(
+          "Hey, idiot, put in the right password. What are you, stupid? I swear bro..."
+        );
+      }
+      // result == true
+      const currentUser = {
+        id: data.id,
+        name: data.f_name
+      }
+      res.json(currentUser);
+
+    });
+  });
+});
+
+router.post("/api/signup", function (req, res) {
+  db.User.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then(function (data) {
+    console.log(data)
+    if (data !== null) {
+      console.log("bacon")
+      return res.json(
+        "Hey, idiot, you already have an account. What are you, stupid? I swear bro..."
+      );
+    }
+    bcrypt.hash(req.body.pwd, 10, function(err, hash) {
+      if (err) throw err;
+      db.User.create({
         f_name: req.body.f_name,
         l_name: req.body.l_name,
         email: req.body.email,
         phone: req.body.phone,
-        pwd: req.body.pwd
-    })
-})
-
-router.get("/api/login", function (req, res) {
-    db.User.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(function(data) {
-        if (data === null) {
-            return res.json ("Hey, idiot, put in the right email. What are you, stupid? I swear bro...")
-        }
-        bcrypt.compare(req.body.password, data.pwd, function(err, result) {
-            if (err) throw err;
-            if (result === false) {
-                return res.json("Hey, idiot, put in the right password. What are you, stupid? I swear bro...")
-            }
-            // result == true
-        });
-        res.json(data)
-    })
-})
+        pwd: hash
+      });
+    })    
+  });
+});
 
 module.exports = router;

@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
         isEmail: true,
       },
     },
-    phone: DataTypes.INTEGER,
+    phone: DataTypes.STRING,
     pwd: {
       type: DataTypes.STRING,
       allowNull: false,
