@@ -9,3 +9,7 @@ header{
     height: 400px;
     background-repeat: no-repeat;
 }
+
+p { 
+    margin-top: 20px;
+}
