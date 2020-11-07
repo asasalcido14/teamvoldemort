@@ -48,7 +48,7 @@ class Login extends React.Component {
 <br></br>
       <Row>
         <Col xs={{span:8, offset:4}}> 
-        <Image src= "../assets/sheeping.png" fluid/>
+        <Image src= "./src/assets/sheeping.png" fluid/>
         </Col>
       </Row>
 
