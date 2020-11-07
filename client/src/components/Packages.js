@@ -6,7 +6,7 @@ class Packages extends React.Component {
   render() {
     return (
       <Container>
-        <h3>Welcome, {this.props.currentUser.f_name}</h3>
+        <h3>Welcome, {this.props.currentUser}</h3>
         <Package currentUser={this.props.currentUser} />
       </Container>
     );
