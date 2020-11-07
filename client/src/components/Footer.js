@@ -11,7 +11,7 @@ function Footer() {
     trackNum: "",
   };
 
-  const { name, id } = useContext(UserContext);
+  // const { name, id } = useContext(UserContext);
   
   const handleChange=(e) => {
     const { name, value } = e.target;

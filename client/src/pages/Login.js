@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import {Button,Form,Alert,Container,Row,Col} from "react-bootstrap";
+import {Button,Form,Alert,Container,Row,Col,Image} from "react-bootstrap";
 import "./Login.css"
 import "./FormPage.css";
 import { withRouter } from 'react-router-dom'
@@ -40,22 +40,21 @@ class Login extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
+        {/* <Row>
           <Col xs={{ span: 8, offset: 5 }}>
             <header> Tracking App </header>
           </Col>
-        </Row>
+        </Row> */}
 <br></br>
       <Row>
-        <Col xs={{span:8, offset:2}}> 
-        <div id= "intro"></div>
+        <Col xs={{span:8, offset:4}}> 
+        <Image src= "../assets/sheeping.png" fluid/>
         </Col>
       </Row>
-<br></br>
 
 
         <Row>
-          <Col xs={{ span: 8, offset: 2 }}>
+          <Col xs={{ span: 6, offset: 3 }}>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
