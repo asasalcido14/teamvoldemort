@@ -1,6 +1,5 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import UserContext from "../utils/UserContext";
 import { Row, Col, Form, Button } from "react-bootstrap";
 
 function Footer(props) {
@@ -19,7 +18,7 @@ function Footer(props) {
       description: packageState.description,
       user: props.currentUser.id,
     }).then(function(data){
-        
+
     });
     setPackageState({
         description: "",
