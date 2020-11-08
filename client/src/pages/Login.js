@@ -47,14 +47,14 @@ class Login extends React.Component {
         </Row> */}
 <br></br>
       <Row>
-        <Col xs={{span:8, offset:4}}> 
-        <Image src= "./src/assets/sheeping.png" fluid/>
+        <Col className="logo" xs={{span:12}}> 
+        <Image src= "./sheeping.png" fluid/>
         </Col>
       </Row>
 
 
         <Row>
-          <Col xs={{ span: 6, offset: 3 }}>
+          <Col xs={{ span: 12}}>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -83,7 +83,7 @@ class Login extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <p>Don't have an account? <a href="/signup">Click here</a> to sign up!</p>
+              <p>Don't have an account? <Button variant="secondary" href="/signup">Click here</Button> to sign up!</p>
               {this.state.error && (
                 <Alert variant="danger">{this.state.error}</Alert>
               )}

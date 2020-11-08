@@ -20,6 +20,9 @@ body::before {
     height: 100%;
 }
 
+.text-muted {
+    color: #ffffff !important;
+}
 
 .form-group { 
     margin-top: 30px;

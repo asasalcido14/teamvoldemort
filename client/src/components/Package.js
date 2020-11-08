@@ -6,29 +6,29 @@ function Package(props) {
   const [packages, setPackages] = useState();
 
   useEffect(() => {
-    Axios.get("/api/shipmaster/" + props.currentUser.id);
-  }, [])
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
+    Axios.get("/api/shipmaster/" + props.currentUser.id).then((data) => {
+      setPackages(data.data);
+      console.log(data.data)
+    });
+  }, []);
 
   return (
     <Row>
-      <Col sm={12}>
+      <Col xs={12}>
         <Card>
           <Row>
-            <Col sm={12}>{/* description */}</Col>
+            <Col xs={12}></Col>
           </Row>
           <Row>
-            <Col sm={4}>
-              <Button variant="primary">Track</Button>
+            <Col xs={4}>
+              <Button  variant="primary">
+                Track
+              </Button>
             </Col>
-            <Col sm={4}>
+            <Col xs={4}>
               <Button variant="success">Arrived</Button>
             </Col>
-            <Col sm={4}>
+            <Col xs={4}>
               <Button variant="danger">Cancelled</Button>
             </Col>
           </Row>
@@ -38,4 +38,4 @@ function Package(props) {
   );
 }
 
-export default Package
+export default Package;

@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "Tigger!4",
+      "password": "root",
       "database": "shipmaster_db",
       "host": "127.0.0.1",
       "dialect": "mysql"

@@ -10,6 +10,10 @@ header{
     background-repeat: no-repeat;
 } */
 
+.logo {
+    text-align: center;
+}
+
 p { 
     margin-top: 20px;
 }
