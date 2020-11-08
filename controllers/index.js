@@ -63,8 +63,8 @@ const expressions = [
 
 //function determining the carrier to be called within the makeUrl function
 function detCarrier(trackNum) {
-  for (let i = 0; i < array.length; i++) {
-    if (expressions[i].regex === true) {
+  for (let i = 0; i < expressions.length; i++) {
+    if (expressions[i].regex.test(trackNum) === true) {
       return expressions[i].carrier;
     }
   }
@@ -94,10 +94,10 @@ function makeUrl(trackNum) {
   return url;
 }
 
-router.get("/api/shipmaster", function (req, res) {
+router.get("/api/shipmaster/:id", function (req, res) {
   db.Package.findAll({
     where: {
-      User: req.body.id,
+      User: req.params.id,
     },
   }).then(function (Packages) {
     Packages.map((Package) => {
@@ -110,10 +110,18 @@ router.get("/api/shipmaster", function (req, res) {
 });
 
 router.post("/api/new", function (req, res) {
+  console.log(req.body)
   db.Package.create({
     url: makeUrl(req.body.trackNum),
     description: req.body.description,
-    User: req.body.user
+    UserId: req.body.user
+  }).then(function(data){
+    console.log(data)
+    res.json({
+      id: data.dataValues.id,
+      description: data.dataValues.description,
+      url: data.dataValues.url
+    })
   });
 });
 

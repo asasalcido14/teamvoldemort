@@ -1,31 +1,30 @@
 import Axios from "axios";
-import React from "react";
-import UserContext from "../utils/userContext"
-import {useContext} from "react";
+import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 
+function Footer(props) {
 
-function Footer() {
-  const state = {
-    description: "",
-    trackNum: "",
-  };
+    const [packageState, setPackageState] = useState({})
 
-  const { name, id } = useContext(UserContext);
-  
-  const handleChange=(e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    setPackageState({ ...packageState, [name]: value });
   };
 
-  const handleSubmit= (e) => {
-      e.preventDefault()
-      Axios.post("/api/new", {
-        trackNum: state.trackNum,
-        description: state.description,
-        User: ""
-      })
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Axios.post("/api/new", {
+      trackNum: packageState.trackNum,
+      description: packageState.description,
+      user: props.currentUser.id,
+    }).then(function(data){
+        
+    });
+    setPackageState({
+        description: "",
+        trackNum: ""
+    });
+  };
 
   return (
     <Row>
@@ -37,7 +36,7 @@ function Footer() {
               <Form.Group>
                 <Form.Label>What you ordered:</Form.Label>
                 <Form.Control
-                  value={state.description}
+                  value={packageState.description}
                   onChange={handleChange}
                   name={"description"}
                   type="text"
@@ -48,14 +47,18 @@ function Footer() {
               <Form.Group>
                 <Form.Label>Tracking Number:</Form.Label>
                 <Form.Control
-                  value={state.trackNum}
+                  value={packageState.trackNum}
                   onChange={handleChange}
-                  name={"tracking"}
+                  name={"trackNum"}
                   type="text"
                 />
               </Form.Group>
             </Col>
-            <Button variant="primary" type="submit"></Button>
+            <Col sm={2}>
+              <Button variant="primary" type="submit">
+                Add
+              </Button>
+            </Col>
           </Form.Row>
         </Form>
       </Col>
