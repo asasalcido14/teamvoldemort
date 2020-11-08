@@ -95,43 +95,45 @@ function makeUrl(trackNum) {
 }
 
 router.get("/api/shipmaster/:id", function (req, res) {
+  console.log("bacon")
   db.Package.findAll({
     where: {
-      User: req.params.id,
+      UserId: req.params.id,
     },
-  }).then(function (Packages) {
-    Packages.map((Package) => {
-      return {
-        url: Package.url,
-        description: Package.description,
-      };
-    });
+  }).then(function (data) {
+    console.log(data);
+    const packages = data.map(Package => ({
+      url: Package.dataValues.url,
+      description: Package.dataValues.description
+    }))
+    console.log(packages)
+    res.json(packages)
   });
 });
 
 router.post("/api/new", function (req, res) {
-  console.log(req.body)
+  console.log(req.body);
   db.Package.create({
     url: makeUrl(req.body.trackNum),
     description: req.body.description,
-    UserId: req.body.user
-  }).then(function(data){
-    console.log(data)
+    UserId: req.body.user,
+  }).then(function (data) {
+    console.log(data);
     res.json({
       id: data.dataValues.id,
       description: data.dataValues.description,
-      url: data.dataValues.url
-    })
+      url: data.dataValues.url,
+    });
   });
 });
 
 router.delete("api/delete", function (req, res) {
   db.Package.destroy({
     where: {
-      id: req.body.id
-    }
-  })
-})
+      id: req.body.id,
+    },
+  });
+});
 
 router.post("/api/login", function (req, res) {
   db.User.findOne({
@@ -154,10 +156,9 @@ router.post("/api/login", function (req, res) {
       // result == true
       const currentUser = {
         id: data.id,
-        name: data.f_name
-      }
+        name: data.f_name,
+      };
       res.json(currentUser);
-
     });
   });
 });
@@ -168,23 +169,23 @@ router.post("/api/signup", function (req, res) {
       email: req.body.email,
     },
   }).then(function (data) {
-    console.log(data)
+    console.log(data);
     if (data !== null) {
-      console.log("bacon")
+      console.log("bacon");
       return res.json(
         "Hey, idiot, you already have an account. What are you, stupid? I swear bro..."
       );
     }
-    bcrypt.hash(req.body.pwd, 10, function(err, hash) {
+    bcrypt.hash(req.body.pwd, 10, function (err, hash) {
       if (err) throw err;
       db.User.create({
         f_name: req.body.f_name,
         l_name: req.body.l_name,
         email: req.body.email,
         phone: req.body.phone,
-        pwd: hash
+        pwd: hash,
       });
-    })    
+    });
   });
 });
 

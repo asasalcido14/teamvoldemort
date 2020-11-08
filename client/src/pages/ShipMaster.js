@@ -1,9 +1,10 @@
 // import React, { Wrapper } from "react";
 import Wrapper from "../components/Wrapper"
 import Package from "../components/Package";
-import Footer from "../components/Footer"
 import {Container} from "react-bootstrap"
 import "./FormPage.css";
+import Footer from "../components/Footer";
+
 
 function ShipMaster(props) {
   return (

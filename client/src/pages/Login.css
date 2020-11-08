@@ -4,8 +4,16 @@ header{
     font-size: 30px;
     border-radius: 20px;
 }
-#intro{
-    background-image: url(../assets/planegif.gif);
-    height: 400px;
+/* #intro{
+    background-image: url(../assets/sheeping.png);
+    height: 380px;
     background-repeat: no-repeat;
+} */
+
+.logo {
+    text-align: center;
+}
+
+p { 
+    margin-top: 20px;
 }

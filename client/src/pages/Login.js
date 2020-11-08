@@ -1,8 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { Button, Form, Alert, Container, Row, Col } from "react-bootstrap";
+import {Button,Form,Alert,Container,Row,Col,Image} from "react-bootstrap";
+import "./Login.css"
 import "./FormPage.css";
 import { withRouter } from 'react-router-dom'
+import "./Login.css";
+
 
 class Login extends React.Component {
   state = {
@@ -37,21 +40,21 @@ class Login extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
+        {/* <Row>
           <Col xs={{ span: 8, offset: 5 }}>
             <header> Tracking App </header>
           </Col>
-        </Row>
-        <br></br>
-        <Row>
-          <Col xs={{ span: 8, offset: 2 }}>
-            <div id="intro"></div>
-          </Col>
-        </Row>
-        <br></br>
+        </Row> */}
+<br></br>
+      <Row>
+        <Col className="logo" xs={{span:12}}> 
+        <Image src= "./sheeping.png" fluid/>
+        </Col>
+      </Row>
+
 
         <Row>
-          <Col xs={{ span: 8, offset: 2 }}>
+          <Col xs={{ span: 12}}>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -80,7 +83,7 @@ class Login extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <p>Don't have an account? <a href="/signup">Click here</a> to sign up!</p>
+              <p>Don't have an account? <Button variant="secondary" href="/signup">Click here</Button> to sign up!</p>
               {this.state.error && (
                 <Alert variant="danger">{this.state.error}</Alert>
               )}

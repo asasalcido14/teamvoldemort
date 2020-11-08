@@ -28,11 +28,11 @@ function Footer(props) {
 
   return (
     <Row>
-      <Col sm={12}>
+      <Col xs={12}>
         <h3>Add a Package:</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Row>
-            <Col sm={5}>
+            <Col xs={5}>
               <Form.Group>
                 <Form.Label>What you ordered:</Form.Label>
                 <Form.Control
@@ -43,7 +43,7 @@ function Footer(props) {
                 />
               </Form.Group>
             </Col>
-            <Col sm={5}>
+            <Col xs={5}>
               <Form.Group>
                 <Form.Label>Tracking Number:</Form.Label>
                 <Form.Control
@@ -54,7 +54,7 @@ function Footer(props) {
                 />
               </Form.Group>
             </Col>
-            <Col sm={2}>
+            <Col xs={2}>
               <Button variant="primary" type="submit">
                 Add
               </Button>

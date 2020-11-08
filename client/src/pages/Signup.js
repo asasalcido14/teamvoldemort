@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import Alert from "react-bootstrap/Alert";
 import { withRouter } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 import "./FormPage.css";
 
 class Signup extends React.Component {
@@ -83,6 +84,9 @@ class Signup extends React.Component {
               onChange={this.handleChange}
               name={"email"}
             />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
           </div>
 
           <div className="form-group">
@@ -111,10 +115,16 @@ class Signup extends React.Component {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <Button type="submit" className="btn btn-primary">
             Signup
-          </button>
-              <p>Already have an account? <a href="/">Click here</a> to log in!</p>
+          </Button>
+          <p>
+            Already have an account?{" "}
+            <Button variant="secondary" href="/">
+              Click here
+            </Button>{" "}
+            to log in!
+          </p>
           {this.state.error && (
             <Alert variant="danger">{this.state.error}</Alert>
           )}
