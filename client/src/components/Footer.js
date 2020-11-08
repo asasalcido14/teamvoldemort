@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
+import "../pages/FormPage.css";
 
 function Footer(props) {
 
@@ -32,7 +33,7 @@ function Footer(props) {
         <h3>Add a Package:</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Row>
-            <Col xs={5}>
+            <Col xs={10} sm={5}>
               <Form.Group>
                 <Form.Label>What you ordered:</Form.Label>
                 <Form.Control
@@ -43,7 +44,7 @@ function Footer(props) {
                 />
               </Form.Group>
             </Col>
-            <Col xs={5}>
+            <Col xs={10} sm={5}>
               <Form.Group>
                 <Form.Label>Tracking Number:</Form.Label>
                 <Form.Control
@@ -54,8 +55,9 @@ function Footer(props) {
                 />
               </Form.Group>
             </Col>
-            <Col xs={2}>
-              <Button variant="primary" type="submit">
+            <Col xs={2} sm={2}>
+              <br></br>
+              <Button className="addbutton" variant="primary" type="submit">
                 Add
               </Button>
             </Col>

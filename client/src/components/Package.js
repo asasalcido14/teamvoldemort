@@ -15,24 +15,22 @@ function Package(props) {
   return (
     <Row>
       <Col xs={12}>
-        <Card>
           <Row>
             <Col xs={12}></Col>
           </Row>
           <Row>
-            <Col xs={4}>
+            <Col xs={4} sm={1}>
               <Button  variant="primary">
                 Track
               </Button>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} sm={1}>
               <Button variant="success">Arrived</Button>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} sm={1}>
               <Button variant="danger">Cancelled</Button>
             </Col>
           </Row>
-        </Card>
       </Col>
     </Row>
   );
