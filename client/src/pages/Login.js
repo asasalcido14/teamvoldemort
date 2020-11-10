@@ -26,7 +26,7 @@ class Login extends React.Component {
         pwd: this.state.pwd,
       })
       .then((data) => {
-        if (typeof data.data === "string") {
+        if (typeof  ta === "string") {
           this.setState({
             error: data.data,
           });

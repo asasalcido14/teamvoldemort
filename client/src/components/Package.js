@@ -21,15 +21,15 @@ function Package(props) {
             <Col xs={12}>{item.description}</Col>
           </Row>
           <Row>
-            <Col xs={4} sm={1}>
+            <Col xs={4}>
               <Button  href={item.url} variant="primary">
                 Track
               </Button>
             </Col>
-            <Col xs={4} sm={1}>
+            <Col xs={4} >
               <Button variant="success">Arrived</Button>
             </Col>
-            <Col xs={4} sm={1}>
+            <Col xs={4}>
               <Button variant="danger">Cancelled</Button>
             </Col>
           </Row>
