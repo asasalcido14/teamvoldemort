@@ -19,15 +19,15 @@ function Package(props) {
             <Col xs={12}></Col>
           </Row>
           <Row>
-            <Col xs={4} sm={1}>
+            <Col xs={4} >
               <Button  variant="primary">
                 Track
               </Button>
             </Col>
-            <Col xs={4} sm={1}>
+            <Col xs={4} >
               <Button variant="success">Arrived</Button>
             </Col>
-            <Col xs={4} sm={1}>
+            <Col xs={4}>
               <Button variant="danger">Cancelled</Button>
             </Col>
           </Row>
