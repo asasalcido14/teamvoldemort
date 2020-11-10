@@ -6,19 +6,19 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 const { isAbsolute } = require("path");
 const expressions = [
   {
-    regex: RegExp(/^(1Z)[0-9A-Z]{16}$/),
+    regex: RegExp(/^(1Z)[0-9A-Z]{16}$/i),
     carrier: "UPS",
   },
   {
-    regex: RegExp(/^(T)+[0-9A-Z]{10}$/),
+    regex: RegExp(/^(T)+[0-9A-Z]{10}$/i),
     carrier: "UPS",
   },
   {
-    regex: RegExp(/^[0-9]{9}$/),
+    regex: RegExp(/^[0-9]{9}$/i),
     carrier: "UPS",
   },
   {
-    regex: RegExp(/^[0-9]{26}$/),
+    regex: RegExp(/^[0-9]{26}$/i),
     carrier: "UPS",
   },
   {
@@ -38,7 +38,7 @@ const expressions = [
     carrier: "USPS",
   },
   {
-    regex: RegExp(/^([A-Z]{2})[0-9]{9}([A-Z]{2})$/),
+    regex: RegExp(/^([A-Z]{2})[0-9]{9}([A-Z]{2})$/i),
     carrier: "USPS",
   },
   {
@@ -72,6 +72,7 @@ function detCarrier(trackNum) {
 
 function makeUrl(trackNum) {
   const carrier = detCarrier(trackNum);
+  console.log(carrier)
   let url;
   switch (carrier) {
     case "UPS":

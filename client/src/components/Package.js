@@ -22,7 +22,7 @@ function Package(props) {
           </Row>
           <Row>
             <Col xs={4}>
-              <Button  href={item.url} variant="primary">
+              <Button  href={item.url} target="_blank" variant="primary">
                 Track
               </Button>
             </Col>
