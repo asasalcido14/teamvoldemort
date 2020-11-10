@@ -72,6 +72,7 @@ function detCarrier(trackNum) {
 
 function makeUrl(trackNum) {
   const carrier = detCarrier(trackNum);
+  // console.log(carrier);
   let url;
   switch (carrier) {
     case "UPS":

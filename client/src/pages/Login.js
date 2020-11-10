@@ -4,7 +4,6 @@ import {Button,Form,Alert,Container,Row,Col,Image} from "react-bootstrap";
 import "./Login.css"
 import "./FormPage.css";
 import { withRouter } from 'react-router-dom'
-import "./Login.css";
 
 
 class Login extends React.Component {
@@ -27,7 +26,7 @@ class Login extends React.Component {
         pwd: this.state.pwd,
       })
       .then((data) => {
-        if (typeof data.data === "string") {
+        if (typeof  data.data === "string") {
           this.setState({
             error: data.data,
           });
@@ -55,7 +54,7 @@ class Login extends React.Component {
 
         <Row>
           <Col xs={{ span: 12}}>
-            <Form onSubmit={this.handleSubmit}>
+            <Form className="form-border" onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
