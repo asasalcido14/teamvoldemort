@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { BrowserRouter as Router, Route,} from "react-router-dom";
-// import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar.js"
@@ -11,13 +10,20 @@ import {useHistory} from "react-router-dom"
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(() => {
+    const retrievedObject = localStorage.getItem('user')
+    const userInfo = JSON.parse(retrievedObject)
+    console.log(userInfo)
+    setCurrentUser(userInfo)
+  }, [])
 
   const history = useHistory()
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar name={currentUser.name}/>
         <Route exact path= "/">
           <Login setCurrentUser={setCurrentUser}/>
         </Route>
@@ -25,7 +31,7 @@ function App() {
           <Signup setCurrentUser={setCurrentUser}/>
         </Route>
         <Route exact path= "/shipmaster">
-          <ShipMaster currentUser={currentUser}/>
+          <ShipMaster setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         </Route>
       </div>
     </Router>

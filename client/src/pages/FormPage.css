@@ -40,7 +40,7 @@ header{
     font-size: 30px;
     border-radius: 20px;
 }
-h3{
+h3 {
     padding-top: 15px;
     color: white;
 }
@@ -66,4 +66,25 @@ h3{
     margin-left: 0px;
     margin-right: 0px;
 
+}
+
+h4 {
+    color: white;
+}
+
+.title {
+    background-color:  #007bff;
+}
+
+.packages {
+    margin-bottom: 265px;
+}
+
+h2 {
+    color:black;
+    margin-top: 10px;
+}
+
+.card {
+    margin-top: 10px;
 }

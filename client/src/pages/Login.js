@@ -26,12 +26,13 @@ class Login extends React.Component {
         pwd: this.state.pwd,
       })
       .then((data) => {
-        if (typeof data.data === "string") {
+        if (typeof  data.data === "string") {
           this.setState({
             error: data.data,
           });
         } else {
           this.props.setCurrentUser(data.data)
+          localStorage.setItem("user", JSON.stringify(data.data))
           this.props.history.push("/shipmaster");
         }
       });

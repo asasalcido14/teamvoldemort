@@ -72,7 +72,7 @@ function detCarrier(trackNum) {
 
 function makeUrl(trackNum) {
   const carrier = detCarrier(trackNum);
-  console.log(carrier)
+  // console.log(carrier);
   let url;
   switch (carrier) {
     case "UPS":
@@ -97,6 +97,7 @@ function makeUrl(trackNum) {
 
 router.get("/api/shipmaster/:id", function (req, res) {
   console.log("bacon")
+  console.log(req.params)
   db.Package.findAll({
     where: {
       UserId: req.params.id,
@@ -105,7 +106,8 @@ router.get("/api/shipmaster/:id", function (req, res) {
     console.log(data);
     const packages = data.map(Package => ({
       url: Package.dataValues.url,
-      description: Package.dataValues.description
+      description: Package.dataValues.description,
+      id: Package.dataValues.id
     }))
     console.log(packages)
     res.json(packages)
@@ -128,11 +130,14 @@ router.post("/api/new", function (req, res) {
   });
 });
 
-router.delete("api/delete", function (req, res) {
+router.delete("/api/delete/:id", function (req, res) {
+  console.log(req.params)
   db.Package.destroy({
     where: {
-      id: req.body.id,
+      id: req.params.id,
     },
+  }).then((data) => {
+    res.json(data)
   });
 });
 

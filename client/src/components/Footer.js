@@ -17,13 +17,13 @@ function Footer(props) {
     Axios.post("/api/new", {
       trackNum: packageState.trackNum,
       description: packageState.description,
-      user: props.currentUser.id,
+      user: props.currentUser.id
     }).then(function(data){
-
-    });
-    setPackageState({
-        description: "",
-        trackNum: ""
+      props.setPackages([...props.packages, data.data])
+      setPackageState({
+          description: "",
+          trackNum: ""
+      });
     });
   };
 
