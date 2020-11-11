@@ -9,8 +9,8 @@ function ShipMaster(props) {
   return (
     <Wrapper>
       <Container>
-        <h3 style ={{color:"white"}}>Welcome, {props.currentUser.name}</h3>
-        <Package currentUser={props.currentUser} />
+        <h3 style ="color:white">Welcome, {props.currentUser.name}</h3>
+        <Package currentUser={props.currentUser}/>
         <Footer currentUser={props.currentUser}/>
       </Container>
     </Wrapper>
