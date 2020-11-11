@@ -17,8 +17,8 @@ function Footer(props) {
     Axios.post("/api/new", {
       trackNum: packageState.trackNum,
       description: packageState.description,
-      user: props.currentUser.id,
-    }).then(function(data){
+      user: props.currentUser.id
+    // }).then(function(data){
 
     });
     setPackageState({

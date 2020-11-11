@@ -1,5 +1,4 @@
-// import React, { Wrapper } from "react";
-import Wrapper from "../components/Wrapper"
+import React, { Wrapper } from "react";
 import Package from "../components/Package";
 import {Container} from "react-bootstrap"
 import Footer from "../components/Footer";
