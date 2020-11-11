@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar name={currentUser.name}/>
+        <Navbar />
         <Route exact path= "/">
           <Login setCurrentUser={setCurrentUser}/>
         </Route>
