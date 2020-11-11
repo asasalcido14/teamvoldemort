@@ -20,7 +20,7 @@ const routes = require("./controllers");
 app.use(routes);
 
 db.sequelize.sync().then(function () {
-  app.listen(port, function () {
+  app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });
