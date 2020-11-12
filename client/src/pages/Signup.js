@@ -76,7 +76,7 @@ class Signup extends React.Component {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
               id="email-input"
               placeholder="Enter Email Address"
@@ -92,7 +92,7 @@ class Signup extends React.Component {
           <div className="form-group">
             <label htmlFor="phone">Phone Number</label>
             <input
-              type="text"
+              type="tel"
               className="form-control"
               id="phone-input"
               placeholder="Enter Phone Number"
