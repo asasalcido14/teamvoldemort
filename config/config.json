@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "b55nogn322a2o4nq",
-      "password": "jstqiguf9ft4l88p",
-      "database": "ogxuxa3ozsfsx4p7",
-      "host": "h40lg7qyub2umdvb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "username": "root",
+      "password": "root",
+      "database": "shipmaster_db",
+      "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
@@ -14,10 +14,7 @@
       "dialect": "mysql"
     },
     "production": {
-      "username": "root",
-      "password": "Root",
-      "database": "database_production",
-      "host": "127.0.0.1",
+      "use_env_variable": "JAWSDB_URL",
       "dialect": "mysql"
     }
   }
