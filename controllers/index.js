@@ -96,7 +96,7 @@ function makeUrl(trackNum) {
 }
 
 router.get("/api/shipmaster/:id", function (req, res) {
-  console.log("bacon")
+  console.log("tomatoes")
   console.log(req.params)
   db.Package.findAll({
     where: {
