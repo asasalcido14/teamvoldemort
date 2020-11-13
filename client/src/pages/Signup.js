@@ -46,7 +46,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div className=" col-md-12 col row justify-content-center ">
-        <form onSubmit={this.handlesubmit}>
+        <form onSubmit={this.handlesubmit} className="signup-form">
           <div className="form-group">
             <label htmlFor="first">First Name</label>
             <input
@@ -116,11 +116,11 @@ class Signup extends React.Component {
           </div>
 
           <Button type="submit" className="btn btn-primary">
-            Signup
+            Sign Up
           </Button>
           <p>
             Already have an account?{" "}
-            <Button variant="secondary" href="/">
+            <Button variant="primary" href="/">
               Click here
             </Button>{" "}
             to log in!

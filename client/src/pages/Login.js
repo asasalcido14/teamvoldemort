@@ -83,7 +83,7 @@ class Login extends React.Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <p>Don't have an account? <Button variant="secondary" href="/signup">Click here</Button> to sign up!</p>
+              <p>Don't have an account? <Button variant="primary" href="/signup">Click here</Button> to sign up!</p>
               {this.state.error && (
                 <Alert variant="danger">{this.state.error}</Alert>
               )}
