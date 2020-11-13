@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.port || 8080;
 const db = require("./models");
 const app = express();
 
