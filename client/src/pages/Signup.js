@@ -33,11 +33,11 @@ class Signup extends React.Component {
       })
       .then((data) => {
         console.log(data);
-        if (typeof data.data === "string") {
+        if (data.data === "You already have an account, try to log in!") {
           this.setState({
             error: data.data,
           });
-        } else {
+        } else if (data.data === "success"){
           this.props.history.push("/");
         }
       });

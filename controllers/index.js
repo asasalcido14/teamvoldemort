@@ -178,7 +178,7 @@ router.post("/api/signup", function (req, res) {
     console.log(data);
     if (data !== null) {
       console.log("bacon");
-      return res.json(
+      return res.send(
         "You already have an account, try to log in!"
       );
     }
@@ -191,6 +191,7 @@ router.post("/api/signup", function (req, res) {
         phone: req.body.phone,
         pwd: hash,
       });
+      res.send("success")
     });
   });
 });
