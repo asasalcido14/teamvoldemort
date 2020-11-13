@@ -96,7 +96,7 @@ function makeUrl(trackNum) {
 }
 
 router.get("/api/shipmaster/:id", function (req, res) {
-  console.log("bacon")
+  console.log("tomatoes")
   console.log(req.params)
   db.Package.findAll({
     where: {
@@ -149,14 +149,14 @@ router.post("/api/login", function (req, res) {
   }).then(function (data) {
     if (data === null) {
       return res.json(
-        "Hey, idiot, put in the right email. What are you, stupid? I swear bro..."
+        "Incorrect email."
       );
     }
     bcrypt.compare(req.body.pwd, data.pwd, function (err, result) {
       if (err) throw err;
       if (result === false) {
         return res.json(
-          "Hey, idiot, put in the right password. What are you, stupid? I swear bro..."
+          "Incorrect password."
         );
       }
       // result == true
@@ -178,8 +178,8 @@ router.post("/api/signup", function (req, res) {
     console.log(data);
     if (data !== null) {
       console.log("bacon");
-      return res.json(
-        "Hey, idiot, you already have an account. What are you, stupid? I swear bro..."
+      return res.send(
+        "You already have an account, try to log in!"
       );
     }
     bcrypt.hash(req.body.pwd, 10, function (err, hash) {
@@ -191,6 +191,7 @@ router.post("/api/signup", function (req, res) {
         phone: req.body.phone,
         pwd: hash,
       });
+      res.send("success")
     });
   });
 });

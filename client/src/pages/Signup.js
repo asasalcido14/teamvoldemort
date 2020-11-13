@@ -33,11 +33,11 @@ class Signup extends React.Component {
       })
       .then((data) => {
         console.log(data);
-        if (typeof data.data === "string") {
+        if (data.data === "You already have an account, try to log in!") {
           this.setState({
             error: data.data,
           });
-        } else {
+        } else if (data.data === "success"){
           this.props.history.push("/");
         }
       });
@@ -46,7 +46,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div className=" col-md-12 col row justify-content-center ">
-        <form onSubmit={this.handlesubmit}>
+        <form onSubmit={this.handlesubmit} className="signup-form">
           <div className="form-group">
             <label htmlFor="first">First Name</label>
             <input
@@ -76,7 +76,7 @@ class Signup extends React.Component {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
               id="email-input"
               placeholder="Enter Email Address"
@@ -92,7 +92,7 @@ class Signup extends React.Component {
           <div className="form-group">
             <label htmlFor="phone">Phone Number</label>
             <input
-              type="text"
+              type="tel"
               className="form-control"
               id="phone-input"
               placeholder="Enter Phone Number"
@@ -116,11 +116,11 @@ class Signup extends React.Component {
           </div>
 
           <Button type="submit" className="btn btn-primary">
-            Signup
+            Sign Up
           </Button>
           <p>
             Already have an account?{" "}
-            <Button variant="secondary" href="/">
+            <Button variant="primary" href="/">
               Click here
             </Button>{" "}
             to log in!

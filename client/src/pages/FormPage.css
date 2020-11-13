@@ -40,11 +40,7 @@ header{
     font-size: 30px;
     border-radius: 20px;
 }
-<<<<<<< HEAD
-h3{
-=======
 h3 {
->>>>>>> 0362b6290c2c7cac22f96a958631f0cb4963f01f
     padding-top: 15px;
     color: white;
 }
@@ -71,8 +67,7 @@ h3 {
     margin-right: 0px;
 
 }
-<<<<<<< HEAD
-=======
+
 
 h4 {
     color: white;
@@ -94,4 +89,8 @@ h2 {
 .card {
     margin-top: 10px;
 }
->>>>>>> 0362b6290c2c7cac22f96a958631f0cb4963f01f
+
+
+.signup-form {
+    margin-left: 15px;
+}

@@ -5,9 +5,9 @@ const PORT = process.env.PORT || 8080;
 const db = require("./models");
 const app = express();
 
-app.use(express.static("./client/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(
   session({
     secret: "epsteinDidntKillHimself",
@@ -18,6 +18,14 @@ app.use(
 
 const routes = require("./controllers");
 app.use(routes);
+
+if (process.env.NODE_ENV === 'production') {
+
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  );
+}
 
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
